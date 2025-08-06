@@ -2,6 +2,20 @@
 Four Parks Colombia is an advanced national parking reservation system. This system is designed to facilitate the search and reservation of parking spaces quickly and easily. In addition, it has a complete management and administration module, which allows administrators to efficiently manage all aspects related to parking, including availability, rates, and access control. With its intuitive interface and robust functionalities, Four Parks Colombia is positioned as the ideal solution to optimize the parking experience for both users and administrators.
 
 # Features
+## Manager
+### Manager Menu
+![](./public/screenshots/ManagerMenu.png)
+### Manage Users
+![](./public/screenshots/ManageUsers.png)
+#### Create Users
+![](./public/screenshots/Create-User.png)
+
+### Manage Parkings
+![](./public/screenshots/ManageParkings.png)
+### Stats
+![](./public/screenshots/Stats.png)
+
+
 ## General
 ### Landing
 ![](./public/screenshots/Landing.png)
@@ -31,19 +45,6 @@ Four Parks Colombia is an advanced national parking reservation system. This sys
 ### Reservation Resume
 ![](./public/screenshots/ReservationResume.png)
 
-
-## Manager
-### Manager Menu
-![](./public/screenshots/ManagerMenu.png)
-### Manage Users
-![](./public/screenshots/Landing.png)
-#### Create Users
-![](./public/screenshots/ManageUsers.png)
-
-### Manage Parkings
-![](./public/screenshots/ManageParkings.png)
-### Stats
-![](./public/screenshots/Stats.png)
 
 
 
