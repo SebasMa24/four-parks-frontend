@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import Link from 'next/link'
 import Loader from '@/components/Loader'
 var QRCode = require('qrcode')
@@ -34,13 +34,14 @@ import { DateTime } from 'luxon'
 import { Badge } from '@/components/ui/badge'
 
 interface PageProps {
-  searchParams: {
+  searchParams: Promise<{
     [key: string]: string | string[] | undefined
-  }
+  }>
 }
 
 const Page = ({ searchParams }: PageProps) => {
-  const reservationId = searchParams.reservationId
+  const params = use(searchParams)
+  const reservationId = params.reservationId
   const { data: session } = useSession()
   const { getOneReservation, isLoading } = useReservation()
   const [reservation, setReservation] = useState<
@@ -69,7 +70,7 @@ const Page = ({ searchParams }: PageProps) => {
     }
     const generate = (reservationId: string) => {
       QRCode.toDataURL(
-        `https://fourparks.vercel.app/admin/reservas/edit?reservationId=${reservationId}`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/admin/reservas/edit?reservationId=${reservationId}`
       ).then(setSrc)
     }
     reservationId &&
@@ -94,10 +95,8 @@ const Page = ({ searchParams }: PageProps) => {
               reservation?.reservationEndTime ? (
                 <>
                   <CardHeader className='flex flex-col justify-center bg-muted/50'>
-                    <CardTitle className='group flex flex-col '>
-                      <h1 className='font-light tracking-widest sm:text-2xl text-xl text-center'>
-                        RESERVA FINALIZADA
-                      </h1>
+                    <CardTitle className='font-light tracking-widest sm:text-2xl text-xl text-center'>
+                      RESERVA FINALIZADA
                     </CardTitle>
                     <CardDescription className='text-center text-sm'>
                       <span className='text-primary font-medium'>
@@ -126,9 +125,9 @@ const Page = ({ searchParams }: PageProps) => {
                       <span className='text-primary font-medium'>
                         Esperamos que vuelvas pronto.
                       </span>
-                      <p className='pt-3 text-sm font-medium text-primary tracking-widest text-center'>
-                        ¡GRACIAS POR ESCOGERNOS!{' '}
-                      </p>
+                      <div className='pt-3 text-sm font-medium text-primary tracking-widest text-center'>
+                        ¡GRACIAS POR ESCOGERNOS!
+                      </div>
                     </CardDescription>
                   </CardHeader>
                   <CardContent className='py-6 text-sm'>
@@ -529,10 +528,8 @@ const Page = ({ searchParams }: PageProps) => {
               ) : (
                 <>
                   <CardHeader className='flex flex-col justify-center bg-muted/50'>
-                    <CardTitle className='group flex flex-col '>
-                      <h1 className='font-light tracking-widest sm:text-2xl text-xl text-center'>
-                        RESERVA CONFIRMADA
-                      </h1>
+                    <CardTitle className='font-light tracking-widest sm:text-2xl text-xl text-center'>
+                      RESERVA CONFIRMADA
                     </CardTitle>
                     <CardDescription className='text-center text-sm'>
                       <span className='text-primary font-medium'>
@@ -541,15 +538,12 @@ const Page = ({ searchParams }: PageProps) => {
                           session?.firstLastname +
                           ', '}
                       </span>
-                      hemos enviado a tu correo{' '}
-                      <span className='text-primary font-medium italic'>
-                        ({session?.email})
-                      </span>{' '}
-                      los datos de tu reserva. Presentando el siguiente QR
-                      podrás empezar a hacer uso de tu parqueadero.
-                      <p className='pt-3 text-sm font-medium text-primary tracking-widest text-center'>
-                        ¡GRACIAS POR ESCOGERNOS!{' '}
-                      </p>
+                      los datos de tu reserva se han guardado. Presentando el
+                      siguiente QR podrás empezar a hacer uso de tu
+                      parqueadero.
+                      <span className='block pt-3 text-sm font-medium text-primary tracking-widest text-center'>
+                        ¡GRACIAS POR ESCOGERNOS!
+                      </span>
                     </CardDescription>
                   </CardHeader>
                   <CardContent className='py-6 text-sm'>
@@ -662,14 +656,16 @@ const Page = ({ searchParams }: PageProps) => {
                       <Separator className='my-2' />
                       <div className='w-full flex justify-center py-0'>
                         <div className='border-4 border-yellowFPC-400 '>
-                          <Image
-                            src={src}
-                            className='object-cover object-center grayscale w-64 h-64 sm:w-44 sm:h-44 '
-                            alt='thank you for your order'
-                            priority
-                            width='160'
-                            height='160'
-                          />
+                          {src && (
+                              <Image
+                                  src={src}
+                                  className='object-cover object-center grayscale w-64 h-64 sm:w-44 sm:h-44'
+                                  alt='thank you for your order'
+                                  priority
+                                  width={160}
+                                  height={160}
+                              />
+                          )}
                         </div>
                       </div>
                     </div>

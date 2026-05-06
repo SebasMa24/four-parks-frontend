@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Linkedin } from 'lucide-react'
+import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -54,13 +54,13 @@ const Footer = async () => {
           </h3>
           <div className='flex flex-row gap-2'>
             <Link href=''>
-              <Instagram className='hover:bg-blueFPC-200 duration-700 dark:hover:text-black' />
+              <FaInstagram className='hover:bg-blueFPC-200 duration-700 dark:hover:text-black' />
             </Link>
             <Link href=''>
-              <Facebook className='hover:bg-blueFPC-200 duration-700 dark:hover:text-black' />
+              <FaFacebook className='hover:bg-blueFPC-200 duration-700 dark:hover:text-black' />
             </Link>
             <Link href=''>
-              <Linkedin className='hover:bg-blueFPC-200 duration-700 dark:hover:text-black' />
+              <FaLinkedin className='hover:bg-blueFPC-200 duration-700 dark:hover:text-black' />
             </Link>
           </div>
         </div>

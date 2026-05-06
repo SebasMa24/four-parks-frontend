@@ -55,7 +55,7 @@ const Page = () => {
 
   // mostrar parqueadero asignado y verificacion de admin asociado a parqueadero
   useEffect(() => {
-    if (session && session?.rol === 'ADMINISTRADOR') {
+    if (session && session?.rol === 'ADMINISTRADOR' && !isLoading && parkings.length > 0) {
       const assignedParkings = parkings.filter(
         (parkingItem) => parkingItem.admin?.id === session?.id
       )
@@ -72,7 +72,7 @@ const Page = () => {
         router.push('/')
       }
     }
-  }, [parkings])
+  }, [parkings, isLoading])
 
   return !session || isLoading ? (
     <Loader />

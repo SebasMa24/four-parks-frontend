@@ -126,7 +126,7 @@ const ParkingsTableColumns = ({ data }: { data: ParkingInterface[] }) => {
     {
       id: 'actions',
       enableHiding: false,
-      cell: async ({ row }) => {
+      cell: ({ row }) => {
         const parking = row.original
         return (
           <DropdownMenu>

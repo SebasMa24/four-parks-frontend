@@ -3,7 +3,7 @@
 import { User as UserIcons } from 'lucide-react'
 import Loader from '@/components/Loader'
 import { AuditsTable } from './_components/AuditsTable'
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { useAudit } from '@/services/useAudit'
 import { DateRangePicker } from './_components/DateRangePicker'
 import PrimaryButton from '@/components/CustomButtons/PrimaryButton'
@@ -13,7 +13,8 @@ import { useUser } from '@/services/useUser'
 import { UserInterface } from '@/lib/interfaces/user.interface'
 import NoResults from '@/components/NoResults'
 
-const Page = ({ params: { userId } }: { params: { userId: number } }) => {
+const Page =  ({ params }: { params: Promise<{ userId: number }> }) => {
+  const { userId } = use(params)
   const { audits, getAuditsByUserId, isLoading } = useAudit()
   const { getOneUserById, isLoading: isUseUserLoading } = useUser()
   const [user, setUser] = useState<UserInterface>()

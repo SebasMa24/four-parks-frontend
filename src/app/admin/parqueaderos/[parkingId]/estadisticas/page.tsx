@@ -1,7 +1,7 @@
 'use client'
 
 import { LineChart, Printer } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { useParking } from '@/services/useParking'
 import { ParkingInterface } from '@/lib/interfaces/parking.interface'
 import { useRouter } from 'next/navigation'
@@ -16,10 +16,11 @@ import { NumberOfReservationsCard } from './_components/NumberOfReservationsCard
 import { ReservationsPerMonthByVehicleTypeLineChart } from './_components/ReservationsPerMonthByVehicleTypeLineChart'
 
 export default function Page({
-  params: { parkingId },
+  params
 }: {
-  params: { parkingId: number }
+  params: Promise<{ parkingId: number }>
 }) {
+  const { parkingId } = use(params)
   const { getOneParkingById, isLoading: isLoadingParking } = useParking()
   const [parking, setParking] = useState<ParkingInterface | null | undefined>(
     null

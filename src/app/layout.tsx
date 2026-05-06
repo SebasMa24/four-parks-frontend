@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: DEFAULT_SITE_DESCRIPTION,
 }
 
-export const fontSans = FontSans({
+const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
 })
