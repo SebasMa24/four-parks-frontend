@@ -96,7 +96,7 @@ const Page = () => {
       })
     }
   }
-
+  console.log("SITE KEY:", process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY)
   return (
     <div className='relative flex flex-col items-center justify-center m-6 sm:m-10'>
       <div className='hidden sm:block'>

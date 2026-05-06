@@ -47,7 +47,7 @@ export function EditPasswordUserDialog({ user }: { user: UserInterface }) {
       confirmPassword
     )
     if (res?.status === 200) {
-      signOut()
+      signOut({ callbackUrl: '/' })
     }
   }
 

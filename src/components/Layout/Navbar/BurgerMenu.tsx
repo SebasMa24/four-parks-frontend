@@ -121,7 +121,7 @@ const BurgerMenu = ({
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => {
-                signOut()
+                signOut({ callbackUrl: '/' })
               }}
               className='text-red-500 font-bold cursor-pointer'
             >

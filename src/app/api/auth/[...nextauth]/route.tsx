@@ -25,6 +25,7 @@ const authOptions = NextAuth({
             password: string
           }
           const userFound = await getAuthorizedUserRequest(email, password)
+          console.log('userFound:', JSON.stringify(userFound, null, 2))
           if (userFound?.response?.data) {
             throw new Error(userFound?.response?.data)
           }

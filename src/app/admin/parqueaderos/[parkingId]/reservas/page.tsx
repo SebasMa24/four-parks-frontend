@@ -3,7 +3,7 @@
 import { NotebookPen } from 'lucide-react'
 import Loader from '@/components/Loader'
 import { ReservationsTable } from './_components/ReservationsTable'
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { useParking } from '@/services/useParking'
 import NoResults from '@/components/NoResults'
 import { useReservation } from '@/services/useReservation'
@@ -13,10 +13,11 @@ import { useRouter } from 'next/navigation'
 import { useToast } from '@/components/ui/use-toast'
 
 export default function Page({
-  params: { parkingId },
+  params,
 }: {
-  params: { parkingId: number }
+  params: Promise<{ parkingId: number }>
 }) {
+  const { parkingId } = use(params)
   const { data: session } = useSession()
   const { reservations, isLoading, getReservations, getReservationsByParking } =
     useReservation()

@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { useEffect, useRef, useState } from 'react'
+import { use, useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Download } from 'lucide-react'
 import html2canvas from 'html2canvas'
@@ -26,10 +26,11 @@ import { Icons } from '@/components/Icons'
 import { ReservationsPerMonthByVehicleTypeLineChart } from '../_components/ReservationsPerMonthByVehicleTypeLineChart'
 
 export default function Page({
-  params: { parkingId },
+  params
 }: {
-  params: { parkingId: number }
+  params: Promise<{ parkingId: number }>
 }) {
+  const { parkingId } = use(params)
   const pdfExportComponent = useRef(null)
   const { getOneParkingById, isLoading } = useParking()
   const [parking, setParking] = useState<ParkingInterface | undefined>()

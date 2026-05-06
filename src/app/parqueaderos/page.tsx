@@ -122,27 +122,23 @@ export default function Home() {
               <DrawerTrigger>
                 <div>
                   <Button
-                    className={
-                      'tracking-widest dark:font-semibold border border-primary absolute top-[10px] z-10 left-3'
-                    }
-                    disabled={isLoading}
+                      className='tracking-widest dark:font-semibold border border-primary absolute top-[10px] z-10 left-3'
+                      disabled={isLoading}
                   >
-                    <p className='font-semibold'>BUSCAR PARQUEADEROS</p>
+                    <span className='font-semibold'>BUSCAR PARQUEADEROS</span>
                   </Button>
                 </div>
               </DrawerTrigger>
               <DrawerContent className='px-6'>
                 <DrawerHeader>
-                  <DrawerTitle>
-                    <p className='tracking-widest'>PARQUEADEROS</p>
+                  <DrawerTitle className='tracking-widest'>
+                    PARQUEADEROS
                   </DrawerTitle>
                   <DrawerDescription>
-                    <p className=''>Encuentra tu parqueadero ideal.</p>
+                    Encuentra tu parqueadero ideal.
                   </DrawerDescription>
                 </DrawerHeader>
-                <h2 className='tracking-widest'>
-                  <p className='tracking-widest text-center'>FILTROS</p>
-                </h2>
+                <h2 className='tracking-widest text-center'>FILTROS</h2>
                 <div className='grid gap-2 justify-around grid-cols-2 py-3'>
                   <div>
                     <CitySelect

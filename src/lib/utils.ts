@@ -57,7 +57,12 @@ export const MONTH_OPTIONS: MonthOption[] = [
   },
 ]
 
-export const YEAR_OPTIONS: YearOption[] = Array.from({ length: 10 }, (_, i) => ({
-  value: i + 24,
-  label: (i + 24).toString(), // Optional label for clarity
-}))
+const currentYear = new Date().getFullYear();
+
+export const YEAR_OPTIONS: YearOption[] = Array.from({ length: 10 }, (_, i) => {
+  const year = currentYear + i;
+  return {
+    value: Number(year.toString().slice(-2)),
+    label: year.toString().slice(-2),
+  };
+});

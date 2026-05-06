@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { notFound, redirect } from 'next/navigation'
 import Link from 'next/link'
 import Loader from '@/components/Loader'
@@ -44,13 +44,14 @@ import { EndReservationDialog } from './_components/EndReservationDialog'
 import { Badge } from '@/components/ui/badge'
 
 interface PageProps {
-  searchParams: {
+  searchParams: Promise<{
     [key: string]: string | string[] | undefined
-  }
+  }>
 }
 
 const Page = ({ searchParams }: PageProps) => {
-  const reservationId = searchParams.reservationId
+  const params = use(searchParams)
+  const reservationId = params.reservationId
   const { data: session } = useSession()
   const { getOneReservation, isLoading } = useReservation()
   const [reservation, setReservation] = useState<

@@ -132,7 +132,7 @@ const ReservationsTableColumns = ({
       id: 'actions',
       header: 'Acciones',
       enableHiding: false,
-      cell: async ({ row }) => {
+      cell: ({ row }) => {
         const reservation = row.original
         return (
           <DropdownMenu>
